@@ -56,11 +56,19 @@ header {
   height: 90%;
 }
 
-#game-board {
+#grid-board {
   display: grid;
   height: 85%;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
+}
+
+#grid-board > div {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  font-size: min(100px, 40vh);
+  padding: 0;
 }
 
 #player-choice {
@@ -74,6 +82,8 @@ header {
 #player-choice button {
   letter-spacing: 1px;
 }
+
+
 
 
 
