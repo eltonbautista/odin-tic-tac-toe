@@ -8,9 +8,6 @@ const gameBoard = (() => {
             const gridCell = document.createElement('div');
             gameboard.push(gridCell);
             gridBoard.appendChild(gridCell);
-            // gridCell.addEventListener('click', function(e) {
-            //     this.innerText = 'X';
-            // });
         }
     }
 
@@ -20,46 +17,57 @@ const gameBoard = (() => {
     };
 
 })();
+gameBoard.createGridBoard();
 
-
-const playerFactory = (mark) => {
+const playerFactory = (playerMark, botMark) => {
     return {
-        mark,
-        playerMark: function() {
+        playerMark,
+        botMark,
+        playerPlay: function() {
+            let random = () => Math.floor(Math.random()* 8);
             for (let i = 0; i < 9; i++) {
                 gameBoard.gameboard[i].addEventListener('click', function() {
-                    this.innerText = mark;
+                    if (gameBoard.gameboard[i].innerText === '') {
+                        this.innerText = playerMark;
+                        if (gameBoard.gameboard[i].innerText != 'X' || gameBoard.gameboard[i].innerText != 'O')
+                        gameBoard.gameboard[random()].innerText = botMark;
+                    }  
                 })
             }
-        }
+        },
     }
 }
 
 
-
 const displayController = (() => {
-    const playerX = playerFactory('X');
-    const playerO = playerFactory('O');
+    const playerX = playerFactory('X', 'O');
+    const playerO = playerFactory('O', 'X');
     const xButton = document.querySelector('.button.x');
     const oButton = document.querySelector('.button.o');
+    
 
     const playerChoice = function() {
+
         xButton.addEventListener('click', function() {
-            xButton.style.visibility = 'hidden';
-            oButton.style.visibility = 'hidden';
-            return playerX.playerMark();
+            // xButton.style.visibility = 'hidden';
+            // oButton.style.visibility = 'hidden';
+            return user = playerX.playerPlay();
         })
         oButton.addEventListener('click', function() {
-            xButton.style.visibility = 'hidden';
-            oButton.style.visibility = 'hidden';
-            return playerO.playerMark();
+            // xButton.style.visibility = 'hidden';
+            // oButton.style.visibility = 'hidden';
+            return user = playerO.playerPlay();
         })
+
     }
 
+    // const computerMark
+
     return {
-        playerChoice
+        playerChoice,
     }
 })();
+
 
 
 
