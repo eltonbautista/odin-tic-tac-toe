@@ -82,6 +82,11 @@ header {
 #player-choice button {
   letter-spacing: 1px;
 }
+#player-choice button:active {
+  background-color: white;
+  transform: translateY(2px);
+  box-shadow: 0 3px red;
+}
 
 
 

@@ -24,7 +24,14 @@ const gameBoard = (() => {
 
 const playerFactory = (mark) => {
     return {
-        mark
+        mark,
+        playerMark: function() {
+            for (let i = 0; i < 9; i++) {
+                gameBoard.gameboard[i].addEventListener('click', function() {
+                    this.innerText = mark;
+                })
+            }
+        }
     }
 }
 
@@ -33,11 +40,24 @@ const playerFactory = (mark) => {
 const displayController = (() => {
     const playerX = playerFactory('X');
     const playerO = playerFactory('O');
-    
+    const xButton = document.querySelector('.button.x');
+    const oButton = document.querySelector('.button.o');
+
+    const playerChoice = function() {
+        xButton.addEventListener('click', function() {
+            xButton.style.visibility = 'hidden';
+            oButton.style.visibility = 'hidden';
+            return playerX.playerMark();
+        })
+        oButton.addEventListener('click', function() {
+            xButton.style.visibility = 'hidden';
+            oButton.style.visibility = 'hidden';
+            return playerO.playerMark();
+        })
+    }
 
     return {
-        playerX,
-        playerO
+        playerChoice
     }
 })();
 
