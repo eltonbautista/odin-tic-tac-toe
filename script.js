@@ -6,9 +6,11 @@ const gameBoard = (() => {
     const createGridBoard = () => {
         for (let i = 0; i < 9; i++) {
             const gridCell = document.createElement('div');
-            gridCell.dataset.cellPosition = i;
             gameboard.push(gridCell);
             gridBoard.appendChild(gridCell);
+            // gridCell.addEventListener('click', function(e) {
+            //     this.innerText = 'X';
+            // });
         }
     }
 
@@ -20,15 +22,25 @@ const gameBoard = (() => {
 })();
 
 
+const playerFactory = (mark) => {
+    return {
+        mark
+    }
+}
+
+
+
 const displayController = (() => {
+    const playerX = playerFactory('X');
+    const playerO = playerFactory('O');
     
-    
+
+    return {
+        playerX,
+        playerO
+    }
 })();
 
 
-const playerFactory = () => {
-    return {
 
-    }
-}
 
