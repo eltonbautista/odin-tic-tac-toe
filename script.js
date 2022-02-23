@@ -31,7 +31,45 @@ const playerFactory = (playerMark, botMark) => {
                         this.innerText = playerMark;
                         if (gameBoard.gameboard[i].innerText != 'X' || gameBoard.gameboard[i].innerText != 'O')
                         gameBoard.gameboard[random()].innerText = botMark;
-                    }  
+
+                        if (playerMark == 'X' && (gameBoard.gameboard[0] == 'X' && gameBoard.gameboard[1] == 'X' && gameBoard.gameboard[2] == 'X') || 
+                    (gameBoard.gameboard[0].innerText == 'X' && gameBoard.gameboard[3].innerText == 'X' && gameBoard.gameboard[6].innerText == 'X') || 
+                    (gameBoard.gameboard[0].innerText == 'X' && gameBoard.gameboard[4].innerText == 'X' && gameBoard.gameboard[8].innerText == 'X') ||
+                    (gameBoard.gameboard[2].innerText == 'X' && gameBoard.gameboard[5].innerText == 'X' && gameBoard.gameboard[8].innerText == 'X') ||
+                    (gameBoard.gameboard[2].innerText == 'X' && gameBoard.gameboard[4].innerText == 'X' && gameBoard.gameboard[6].innerText == 'X') ||
+                    (gameBoard.gameboard[6].innerText == 'X' && gameBoard.gameboard[7].innerText == 'X' && gameBoard.gameboard[8].innerText == 'X') ||
+                    (gameBoard.gameboard[1].innerText == 'X' && gameBoard.gameboard[4].innerText == 'X' && gameBoard.gameboard[7].innerText == 'X') ||
+                    (gameBoard.gameboard[3].innerText == 'X' && gameBoard.gameboard[4].innerText == 'X' && gameBoard.gameboard[5].innerText == 'X')) {
+                        return alert('winner!')
+                    } else if (playerMark == 'O' && (gameBoard.gameboard[0].innerText == 'O' && gameBoard.gameboard[1].innerText == 'O' && gameBoard.gameboard[2].innerText == 'O') || 
+                    (gameBoard.gameboard[0].innerText == 'O' && gameBoard.gameboard[3].innerText == 'O' && gameBoard.gameboard[6].innerText == 'O') || 
+                    (gameBoard.gameboard[0].innerText == 'O' && gameBoard.gameboard[4].innerText == 'O' && gameBoard.gameboard[8].innerText == 'O') ||
+                    (gameBoard.gameboard[2].innerText == 'O' && gameBoard.gameboard[5].innerText == 'O' && gameBoard.gameboard[8].innerText == 'O') ||
+                    (gameBoard.gameboard[2].innerText == 'O' && gameBoard.gameboard[4].innerText == 'O' && gameBoard.gameboard[6].innerText == 'O') ||
+                    (gameBoard.gameboard[6].innerText == 'O' && gameBoard.gameboard[7].innerText == 'O' && gameBoard.gameboard[8].innerText == 'O') ||
+                    (gameBoard.gameboard[1].innerText == 'O' && gameBoard.gameboard[4].innerText == 'O' && gameBoard.gameboard[7].innerText == 'O') ||
+                    (gameBoard.gameboard[3].innerText == 'O' && gameBoard.gameboard[4].innerText == 'O' && gameBoard.gameboard[5].innerText == 'O')) {
+                        return alert('winner!')
+                    } else if (playerMark == 'X' && (gameBoard.gameboard[0].innerText == 'O' && gameBoard.gameboard[1].innerText == 'O' && gameBoard.gameboard[2].innerText == 'O') || 
+                    (gameBoard.gameboard[0].innerText == 'O' && gameBoard.gameboard[3].innerText == 'O' && gameBoard.gameboard[6].innerText == 'O') || 
+                    (gameBoard.gameboard[0].innerText == 'O' && gameBoard.gameboard[4].innerText == 'O' && gameBoard.gameboard[8].innerText == 'O') ||
+                    (gameBoard.gameboard[2].innerText == 'O' && gameBoard.gameboard[5].innerText == 'O' && gameBoard.gameboard[8].innerText == 'O') ||
+                    (gameBoard.gameboard[2].innerText == 'O' && gameBoard.gameboard[4].innerText == 'O' && gameBoard.gameboard[6].innerText == 'O') ||
+                    (gameBoard.gameboard[6].innerText == 'O' && gameBoard.gameboard[7].innerText == 'O' && gameBoard.gameboard[8].innerText == 'O') ||
+                    (gameBoard.gameboard[1].innerText == 'O' && gameBoard.gameboard[4].innerText == 'O' && gameBoard.gameboard[7].innerText == 'O') ||
+                    (gameBoard.gameboard[3].innerText == 'O' && gameBoard.gameboard[4].innerText == 'O' && gameBoard.gameboard[5].innerText == 'O')) {
+                        return alert('loser!')
+                    } else if (playerMark == 'O' && (gameBoard.gameboard[0].innerText == 'X' && gameBoard.gameboard[1].innerText == 'X' && gameBoard.gameboard[2].innerText == 'X') || 
+                    (gameBoard.gameboard[0].innerText == 'X' && gameBoard.gameboard[3].innerText == 'X' && gameBoard.gameboard[6].innerText == 'X') || 
+                    (gameBoard.gameboard[0].innerText == 'X' && gameBoard.gameboard[4].innerText == 'X' && gameBoard.gameboard[8].innerText == 'X') ||
+                    (gameBoard.gameboard[2].innerText == 'X' && gameBoard.gameboard[5].innerText == 'X' && gameBoard.gameboard[8].innerText == 'X') ||
+                    (gameBoard.gameboard[2].innerText == 'X' && gameBoard.gameboard[4].innerText == 'X' && gameBoard.gameboard[6].innerText == 'X') ||
+                    (gameBoard.gameboard[6].innerText == 'X' && gameBoard.gameboard[7].innerText == 'X' && gameBoard.gameboard[8].innerText == 'X') ||
+                    (gameBoard.gameboard[1].innerText == 'X' && gameBoard.gameboard[4].innerText == 'X' && gameBoard.gameboard[7].innerText == 'X') ||
+                    (gameBoard.gameboard[3].innerText == 'X' && gameBoard.gameboard[4].innerText == 'X' && gameBoard.gameboard[5].innerText == 'X')) {
+                        return alert('loser!')
+                    }
+                    }
                 })
             }
         },
