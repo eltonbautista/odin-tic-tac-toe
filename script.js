@@ -41,13 +41,11 @@ const displayController = (() => {
 
         xButton.addEventListener('click', function() {
             user = playerX;
-            oButton.style.visibility = 'hidden'
-            xButton.style.visibility = 'hidden'
+
         })
         oButton.addEventListener('click', function() {
             user = playerO;
-            oButton.style.visibility = 'hidden'
-            xButton.style.visibility = 'hidden'
+
         })
         resetButton.addEventListener('click', function() {
             user = playerClear;
@@ -94,6 +92,8 @@ const displayController = (() => {
         }
         gameBoard.gridBoard.style.visibility = 'hidden';
         resetButton.style.visibility = 'visible';
+        oButton.style.visibility = 'hidden'
+        xButton.style.visibility = 'hidden'
     }
 
     const resetGame = resetButton.addEventListener('click', function() {
