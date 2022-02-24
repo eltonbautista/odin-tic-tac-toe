@@ -13,7 +13,8 @@ const gameBoard = (() => {
 
     return {
         createGridBoard,
-        gameboard
+        gameboard,
+        gridBoard
     };
 
 })();
@@ -23,97 +24,62 @@ const playerFactory = (playerMark, botMark) => {
     return {
         playerMark,
         botMark,
-        // playerPlay: function() {
-        //     let random = () => Math.floor(Math.random()* 8);
-        //     for (let i = 0; i < 9; i++) {
-        //         gameBoard.gameboard[i].addEventListener('click', function() {
-        //             if (gameBoard.gameboard[i].innerText === '') {
-        //                 this.innerText = playerMark;
-        //                 console.log(this.innerText)
-                        //if (gameBoard.gameboard[i].innerText != 'X' || gameBoard.gameboard[i].innerText != 'O')
-                        //gameBoard.gameboard[random()].innerText = botMark;
-
-                    //     if (playerMark == 'X' && (gameBoard.gameboard[0] == 'X' && gameBoard.gameboard[1] == 'X' && gameBoard.gameboard[2] == 'X') || 
-                    // (gameBoard.gameboard[0].innerText == 'X' && gameBoard.gameboard[3].innerText == 'X' && gameBoard.gameboard[6].innerText == 'X') || 
-                    // (gameBoard.gameboard[0].innerText == 'X' && gameBoard.gameboard[4].innerText == 'X' && gameBoard.gameboard[8].innerText == 'X') ||
-                    // (gameBoard.gameboard[2].innerText == 'X' && gameBoard.gameboard[5].innerText == 'X' && gameBoard.gameboard[8].innerText == 'X') ||
-                    // (gameBoard.gameboard[2].innerText == 'X' && gameBoard.gameboard[4].innerText == 'X' && gameBoard.gameboard[6].innerText == 'X') ||
-                    // (gameBoard.gameboard[6].innerText == 'X' && gameBoard.gameboard[7].innerText == 'X' && gameBoard.gameboard[8].innerText == 'X') ||
-                    // (gameBoard.gameboard[1].innerText == 'X' && gameBoard.gameboard[4].innerText == 'X' && gameBoard.gameboard[7].innerText == 'X') ||
-                    // (gameBoard.gameboard[3].innerText == 'X' && gameBoard.gameboard[4].innerText == 'X' && gameBoard.gameboard[5].innerText == 'X')) {
-                    //     return alert('winner!')
-                    // } else if (playerMark == 'O' && (gameBoard.gameboard[0].innerText == 'O' && gameBoard.gameboard[1].innerText == 'O' && gameBoard.gameboard[2].innerText == 'O') || 
-                    // (gameBoard.gameboard[0].innerText == 'O' && gameBoard.gameboard[3].innerText == 'O' && gameBoard.gameboard[6].innerText == 'O') || 
-                    // (gameBoard.gameboard[0].innerText == 'O' && gameBoard.gameboard[4].innerText == 'O' && gameBoard.gameboard[8].innerText == 'O') ||
-                    // (gameBoard.gameboard[2].innerText == 'O' && gameBoard.gameboard[5].innerText == 'O' && gameBoard.gameboard[8].innerText == 'O') ||
-                    // (gameBoard.gameboard[2].innerText == 'O' && gameBoard.gameboard[4].innerText == 'O' && gameBoard.gameboard[6].innerText == 'O') ||
-                    // (gameBoard.gameboard[6].innerText == 'O' && gameBoard.gameboard[7].innerText == 'O' && gameBoard.gameboard[8].innerText == 'O') ||
-                    // (gameBoard.gameboard[1].innerText == 'O' && gameBoard.gameboard[4].innerText == 'O' && gameBoard.gameboard[7].innerText == 'O') ||
-                    // (gameBoard.gameboard[3].innerText == 'O' && gameBoard.gameboard[4].innerText == 'O' && gameBoard.gameboard[5].innerText == 'O')) {
-                    //     return alert('winner!')
-                    // } else if (playerMark == 'X' && (gameBoard.gameboard[0].innerText == 'O' && gameBoard.gameboard[1].innerText == 'O' && gameBoard.gameboard[2].innerText == 'O') || 
-                    // (gameBoard.gameboard[0].innerText == 'O' && gameBoard.gameboard[3].innerText == 'O' && gameBoard.gameboard[6].innerText == 'O') || 
-                    // (gameBoard.gameboard[0].innerText == 'O' && gameBoard.gameboard[4].innerText == 'O' && gameBoard.gameboard[8].innerText == 'O') ||
-                    // (gameBoard.gameboard[2].innerText == 'O' && gameBoard.gameboard[5].innerText == 'O' && gameBoard.gameboard[8].innerText == 'O') ||
-                    // (gameBoard.gameboard[2].innerText == 'O' && gameBoard.gameboard[4].innerText == 'O' && gameBoard.gameboard[6].innerText == 'O') ||
-                    // (gameBoard.gameboard[6].innerText == 'O' && gameBoard.gameboard[7].innerText == 'O' && gameBoard.gameboard[8].innerText == 'O') ||
-                    // (gameBoard.gameboard[1].innerText == 'O' && gameBoard.gameboard[4].innerText == 'O' && gameBoard.gameboard[7].innerText == 'O') ||
-                    // (gameBoard.gameboard[3].innerText == 'O' && gameBoard.gameboard[4].innerText == 'O' && gameBoard.gameboard[5].innerText == 'O')) {
-                    //     return alert('loser!')
-                    // } else if (playerMark == 'O' && (gameBoard.gameboard[0].innerText == 'X' && gameBoard.gameboard[1].innerText == 'X' && gameBoard.gameboard[2].innerText == 'X') || 
-                    // (gameBoard.gameboard[0].innerText == 'X' && gameBoard.gameboard[3].innerText == 'X' && gameBoard.gameboard[6].innerText == 'X') || 
-                    // (gameBoard.gameboard[0].innerText == 'X' && gameBoard.gameboard[4].innerText == 'X' && gameBoard.gameboard[8].innerText == 'X') ||
-                    // (gameBoard.gameboard[2].innerText == 'X' && gameBoard.gameboard[5].innerText == 'X' && gameBoard.gameboard[8].innerText == 'X') ||
-                    // (gameBoard.gameboard[2].innerText == 'X' && gameBoard.gameboard[4].innerText == 'X' && gameBoard.gameboard[6].innerText == 'X') ||
-                    // (gameBoard.gameboard[6].innerText == 'X' && gameBoard.gameboard[7].innerText == 'X' && gameBoard.gameboard[8].innerText == 'X') ||
-                    // (gameBoard.gameboard[1].innerText == 'X' && gameBoard.gameboard[4].innerText == 'X' && gameBoard.gameboard[7].innerText == 'X') ||
-                    // (gameBoard.gameboard[3].innerText == 'X' && gameBoard.gameboard[4].innerText == 'X' && gameBoard.gameboard[5].innerText == 'X')) {
-                    //     return alert('loser!')
-                    // }
-        //             }
-        //         })
-        //     }
-        // },
     }
 }
-
 
 const displayController = (() => {
     const playerX = playerFactory('X', 'O');
     const playerO = playerFactory('O', 'X');
+    const playerClear = playerFactory('', '')
     const xButton = document.querySelector('.button.x');
     const oButton = document.querySelector('.button.o');
+    const resetButton = document.querySelector('#play-again')
     
-
     const winConOne = [ [0, 4, 8], [0, 3, 6], [2, 5, 8], [1, 4, 7], [2, 4, 6], [0, 1, 2], [6, 7, 8], [3, 4, 5] ]
 
     const playerChoice = function() {
 
         xButton.addEventListener('click', function() {
-            // xButton.style.visibility = 'hidden';
-            // oButton.style.visibility = 'hidden';
-            return user = playerX;
+            user = playerX;
+            oButton.style.visibility = 'hidden'
+            xButton.style.visibility = 'hidden'
         })
         oButton.addEventListener('click', function() {
-            // xButton.style.visibility = 'hidden';
-            // oButton.style.visibility = 'hidden';
-            return user = playerO;
+            user = playerO;
+            oButton.style.visibility = 'hidden'
+            xButton.style.visibility = 'hidden'
+        })
+        resetButton.addEventListener('click', function() {
+            user = playerClear;
         })
     }
 
     const checker = function() {
         for (let i = 0; i < gameBoard.gameboard.length; i++) {
             gameBoard.gameboard[i].addEventListener('click', function() {
-                if (!(typeof user == typeof undefined) && gameBoard.gameboard[i].innerText === '') {
+                if (!(typeof user == 'undefined') && gameBoard.gameboard[i].innerText === '') {
+                    if (user.playerMark == 'X') {
+                        this.style.backgroundColor = 'red';
+                        this.style.color = 'rgba(245, 222, 179, 0.685)';
+                        this.style.textShadow = '0.5px -2px 0.3px rgb(255 255 255), 0 0 1em rgb(255 17 0)';
+                    } else {
+                        this.style.backgroundColor = 'blue' 
+                        this.style.color = 'white';
+                        this.style.textShadow = '-2px 0 8px white';
+                    }
                 this.innerText = user.playerMark;
                 for (wincon of winConOne){
                 if ((user.playerMark == 'X' && gameBoard.gameboard[wincon[0]].innerText == 'X' 
                 && gameBoard.gameboard[wincon[1]].innerText == 'X' 
-                && gameBoard.gameboard[wincon[2]].innerText == 'X') || 
-                (user.playerMark == 'O' && gameBoard.gameboard[wincon[0]].innerText == 'O' 
+                && gameBoard.gameboard[wincon[2]].innerText == 'X')) {
+                    alert('GG X Wins');
+                    clearBoard();
+                }
+                else if (user.playerMark == 'O' && gameBoard.gameboard[wincon[0]].innerText == 'O' 
                 && gameBoard.gameboard[wincon[1]].innerText == 'O' 
-                && gameBoard.gameboard[wincon[2]].innerText == 'O')) {
-                    alert ('WINNER!')
+                && gameBoard.gameboard[wincon[2]].innerText == 'O') {
+                    alert('GG O Wins');
+                    clearBoard();
                 }
             }
         }
@@ -121,9 +87,31 @@ const displayController = (() => {
     }
 }
 
+    function clearBoard() {
+        for (let i = 0; i < gameBoard.gameboard.length; i++) {
+        gameBoard.gameboard[i].innerText = ''
+        gameBoard.gameboard[i].backgroundColor = ''                
+        }
+        gameBoard.gridBoard.style.visibility = 'hidden';
+        resetButton.style.visibility = 'visible';
+    }
+
+    const resetGame = resetButton.addEventListener('click', function() {
+        for (let i = 0; i < gameBoard.gameboard.length; i++) {
+            gameBoard.gameboard[i].innerText = ''
+            gameBoard.gameboard[i].style.backgroundColor = 'white'                
+            }
+        resetButton.style.visibility = 'hidden'
+        gameBoard.gridBoard.style.visibility = 'visible'
+        oButton.style.visibility = 'visible'
+        xButton.style.visibility = 'visible'
+    })
+
+
     return {
         playerChoice,
         checker,
+        clearBoard,
     }
 })();
 
