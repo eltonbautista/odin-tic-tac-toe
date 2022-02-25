@@ -89,7 +89,7 @@ header {
   display: grid;
   align-items: center;
   justify-content: center;
-  font-size: min(160px, 20vh);
+  font-size: min(120px, 15vh);
   padding: 0;
   width: 100%;
   height: 100%;

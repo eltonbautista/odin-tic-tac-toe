@@ -6,6 +6,7 @@ const gameBoard = (() => {
     const createGridBoard = () => {
         for (let i = 0; i < 9; i++) {
             const gridCell = document.createElement('div');
+            gridCell.dataset.cell = i;
             gameboard.push(gridCell);
             gridBoard.appendChild(gridCell);
         }
@@ -53,6 +54,7 @@ const displayController = (() => {
     }
 
     const checker = function() {
+        let counter = 0;
         for (let i = 0; i < gameBoard.gameboard.length; i++) {
             gameBoard.gameboard[i].addEventListener('click', function() {
                 if (!(typeof user == 'undefined') && gameBoard.gameboard[i].innerText === '') {
@@ -66,17 +68,26 @@ const displayController = (() => {
                         this.style.textShadow = '-2px 0 8px white';
                     }
                 this.innerText = user.playerMark;
+                
+                counter++
+                if (counter == 9) {
+                    alert('GG TIE!')
+                    counter = 0;
+                    clearBoard();
+                }
                 for (wincon of winConOne){
                 if ((user.playerMark == 'X' && gameBoard.gameboard[wincon[0]].innerText == 'X' 
                 && gameBoard.gameboard[wincon[1]].innerText == 'X' 
                 && gameBoard.gameboard[wincon[2]].innerText == 'X')) {
                     alert('GG X Wins');
+                    counter = 0;
                     clearBoard();
                 }
                 else if (user.playerMark == 'O' && gameBoard.gameboard[wincon[0]].innerText == 'O' 
                 && gameBoard.gameboard[wincon[1]].innerText == 'O' 
                 && gameBoard.gameboard[wincon[2]].innerText == 'O') {
                     alert('GG O Wins');
+                    counter = 0;
                     clearBoard();
                 }
             }
@@ -96,7 +107,7 @@ const displayController = (() => {
         xButton.style.visibility = 'hidden'
     }
 
-    const resetGame = resetButton.addEventListener('click', function() {
+    resetButton.addEventListener('click', function() {
         for (let i = 0; i < gameBoard.gameboard.length; i++) {
             gameBoard.gameboard[i].innerText = ''
             gameBoard.gameboard[i].style.backgroundColor = 'white'                
