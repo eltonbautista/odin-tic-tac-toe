@@ -53,50 +53,67 @@ const displayController = (() => {
         })
     }
 
-    const checker = function() {
-        let counter = 0;
-        for (let i = 0; i < gameBoard.gameboard.length; i++) {
-            gameBoard.gameboard[i].addEventListener('click', function() {
-                if (!(typeof user == 'undefined') && gameBoard.gameboard[i].innerText === '') {
-                    if (user.playerMark == 'X') {
-                        this.style.backgroundColor = 'red';
-                        this.style.color = 'rgba(245, 222, 179, 0.685)';
-                        this.style.textShadow = '0.5px -2px 0.3px rgb(255 255 255), 0 0 1em rgb(255 17 0)';
-                    } else {
-                        this.style.backgroundColor = 'blue' 
-                        this.style.color = 'white';
-                        this.style.textShadow = '-2px 0 8px white';
-                    }
-                this.innerText = user.playerMark;
-                
-                for (wincon of winConOne){
-                if ((user.playerMark == 'X' && gameBoard.gameboard[wincon[0]].innerText == 'X' 
-                && gameBoard.gameboard[wincon[1]].innerText == 'X' 
-                && gameBoard.gameboard[wincon[2]].innerText == 'X')) {
-                    alert('GG X Wins');
-                    counter = 0;
-                    clearBoard();
-                }
-                else if (user.playerMark == 'O' && gameBoard.gameboard[wincon[0]].innerText == 'O' 
-                && gameBoard.gameboard[wincon[1]].innerText == 'O' 
-                && gameBoard.gameboard[wincon[2]].innerText == 'O') {
-                    alert('GG O Wins');
-                    counter = 0;
-                    clearBoard();
-                }
-            }
-            counter++
-                if (counter == 9) {
-                    alert('GG TIE!')
-                    counter = 0;
-                    clearBoard();
-                }
+const checker = (() => {
+    let checkArr = [];
+    
+    const toNine = () => {
+        for (let i = 0; i < 9; i++) {
+            checkArr.push('')
         }
-        })
     }
-}
+    toNine();
 
-    function clearBoard() {
+    gameBoard.gridBoard.addEventListener('click', function(e) {
+
+        if (!(typeof user == 'undefined') && 
+        gameBoard.gameboard[e.target.dataset.cell].innerText == '') {
+            if (user.playerMark == 'X') {
+                e.target.style.backgroundColor = 'red';
+                e.target.style.color = 'rgba(245, 222, 179, 0.685)';
+                e.target.style.textShadow = '0.5px -2px 0.3px rgb(255 255 255), 0 0 1em rgb(255 17 0)';
+                e.target.innerText = user.playerMark;
+            } else {
+                e.target.style.backgroundColor = 'blue' 
+                e.target.style.color = 'white';
+                e.target.style.textShadow = '-2px 0 8px white';
+                e.target.innerText = user.playerMark;
+            }
+        }
+        
+        checkArr[e.target.dataset.cell] = e.target.innerText;
+        if (checkArr.length == 9 && checkTie(checkArr, '') == false) {
+            alert ('TIE')
+            clearBoard();
+        }
+
+        function checkTie(arr, val) {
+            return arr.some(function(arrVal) {
+                return val === arrVal;
+            })
+        }
+        for (wincon of winConOne){
+            if ((user.playerMark == 'X' && gameBoard.gameboard[wincon[0]].innerText == 'X' 
+            && gameBoard.gameboard[wincon[1]].innerText == 'X' 
+            && gameBoard.gameboard[wincon[2]].innerText == 'X')) {
+                alert('GG X Wins');
+                clearBoard();
+            }
+            else if (user.playerMark == 'O' && gameBoard.gameboard[wincon[0]].innerText == 'O' 
+            && gameBoard.gameboard[wincon[1]].innerText == 'O' 
+            && gameBoard.gameboard[wincon[2]].innerText == 'O') {
+                alert('GG O Wins');
+                clearBoard();
+            }
+        }
+        console.log(checkArr);
+    })
+    return {
+        toNine,
+        checkArr
+    }
+})();
+
+function clearBoard() {
         for (let i = 0; i < gameBoard.gameboard.length; i++) {
         gameBoard.gameboard[i].innerText = ''
         gameBoard.gameboard[i].backgroundColor = ''                
@@ -105,6 +122,8 @@ const displayController = (() => {
         resetButton.style.visibility = 'visible';
         oButton.style.visibility = 'hidden'
         xButton.style.visibility = 'hidden'
+        checker.checkArr.length = 0;
+        checker.toNine();
     }
 
     resetButton.addEventListener('click', function() {
@@ -128,7 +147,8 @@ const displayController = (() => {
 
 
 displayController.playerChoice();
-displayController.checker();
+
+
 
 
 
