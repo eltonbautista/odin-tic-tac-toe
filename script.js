@@ -69,12 +69,6 @@ const displayController = (() => {
                     }
                 this.innerText = user.playerMark;
                 
-                counter++
-                if (counter == 9) {
-                    alert('GG TIE!')
-                    counter = 0;
-                    clearBoard();
-                }
                 for (wincon of winConOne){
                 if ((user.playerMark == 'X' && gameBoard.gameboard[wincon[0]].innerText == 'X' 
                 && gameBoard.gameboard[wincon[1]].innerText == 'X' 
@@ -91,6 +85,12 @@ const displayController = (() => {
                     clearBoard();
                 }
             }
+            counter++
+                if (counter == 9) {
+                    alert('GG TIE!')
+                    counter = 0;
+                    clearBoard();
+                }
         }
         })
     }
