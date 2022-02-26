@@ -26,15 +26,21 @@ const playerFactory = (playerMark, botMark) => {
         playerMark,
         botMark,
     }
-}
+} 
+
 
 const displayController = (() => {
-    const playerX = playerFactory('X', 'O');
-    const playerO = playerFactory('O', 'X');
-    const playerClear = playerFactory('', '')
+    // const playerX = playerFactory('X', 'O');
+    // const playerO = playerFactory('O', 'X');
+    // const playerClear = playerFactory('', '')
+
+    const [playerX, playerO, playerClear] = [playerFactory('X', 'O'), playerFactory('O', 'X'), 
+    playerFactory('', '')];
+
     const xButton = document.querySelector('.button.x');
     const oButton = document.querySelector('.button.o');
-    const resetButton = document.querySelector('#play-again')
+    const displayButton = document.querySelector('.button.display')
+    const resetButton = document.querySelector('.button.reset')
     
     const winConOne = [ [0, 4, 8], [0, 3, 6], [2, 5, 8], [1, 4, 7], [2, 4, 6], [0, 1, 2], [6, 7, 8], [3, 4, 5] ]
 
@@ -49,7 +55,6 @@ const displayController = (() => {
 
         })
         resetButton.addEventListener('click', function() {
-            user = playerClear;
         })
     }
 
@@ -72,7 +77,7 @@ const checker = (() => {
                 e.target.style.color = 'rgba(245, 222, 179, 0.685)';
                 e.target.style.textShadow = '0.5px -2px 0.3px rgb(255 255 255), 0 0 1em rgb(255 17 0)';
                 e.target.innerText = user.playerMark;
-            } else {
+            } else if (user.playerMark == 'O'){
                 e.target.style.backgroundColor = 'blue' 
                 e.target.style.color = 'white';
                 e.target.style.textShadow = '-2px 0 8px white';
@@ -82,8 +87,7 @@ const checker = (() => {
         
         checkArr[e.target.dataset.cell] = e.target.innerText;
         if (checkArr.length == 9 && checkTie(checkArr, '') == false) {
-            alert ('TIE')
-            clearBoard();
+            clearBoard('GG! TIE!');
         }
 
         function checkTie(arr, val) {
@@ -95,14 +99,12 @@ const checker = (() => {
             if ((user.playerMark == 'X' && gameBoard.gameboard[wincon[0]].innerText == 'X' 
             && gameBoard.gameboard[wincon[1]].innerText == 'X' 
             && gameBoard.gameboard[wincon[2]].innerText == 'X')) {
-                alert('GG X Wins');
-                clearBoard();
+                clearBoard('GG PLAYER X Wins!');
             }
             else if (user.playerMark == 'O' && gameBoard.gameboard[wincon[0]].innerText == 'O' 
             && gameBoard.gameboard[wincon[1]].innerText == 'O' 
             && gameBoard.gameboard[wincon[2]].innerText == 'O') {
-                alert('GG O Wins');
-                clearBoard();
+                clearBoard('GG PLAYER O Wins!');
             }
         }
         console.log(checkArr);
@@ -113,17 +115,14 @@ const checker = (() => {
     }
 })();
 
-function clearBoard() {
-        for (let i = 0; i < gameBoard.gameboard.length; i++) {
-        gameBoard.gameboard[i].innerText = ''
-        gameBoard.gameboard[i].backgroundColor = ''                
-        }
-        gameBoard.gridBoard.style.visibility = 'hidden';
+function clearBoard(winner) {
+    user = playerClear;
+        oButton.style.visibility = 'hidden';
+        xButton.style.visibility = 'hidden';
         resetButton.style.visibility = 'visible';
-        oButton.style.visibility = 'hidden'
-        xButton.style.visibility = 'hidden'
         checker.checkArr.length = 0;
         checker.toNine();
+    resetButton.innerText = winner;
     }
 
     resetButton.addEventListener('click', function() {
@@ -135,6 +134,7 @@ function clearBoard() {
         gameBoard.gridBoard.style.visibility = 'visible'
         oButton.style.visibility = 'visible'
         xButton.style.visibility = 'visible'
+        // user = playerClear;
     })
 
 

@@ -62,9 +62,8 @@ header {
 #main-container > button {
   visibility: hidden;
   position: absolute;
-  align-self: center;
+  /* align-self: center; */
   justify-self: center;
-  margin-bottom: 125px;
   font-size: min(50px, 5vh);
   color: white;
   background-color: red;
@@ -106,7 +105,7 @@ header {
 
 #player-choice button {
   letter-spacing: 1px;
-  background-color: red;
+  background-color: black;
   color: wheat;
 }
 #player-choice button:active {
@@ -115,6 +114,20 @@ header {
   box-shadow: 0 3px red;
 }
 
+#player-choice button.x:focus {
+  background-color: red;
+}
+#player-choice button.o:focus {
+  background-color: blue;
+}
+#player-choice span:last-child {
+  visibility: hidden;
+  position: absolute;
+  justify-self: center;
+}
+#player-choice button.reset {
+  font-size: 20px;
+}
 
 /* FOOTER */
 footer {
