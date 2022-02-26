@@ -3,14 +3,14 @@ const gameBoard = (() => {
     const gridBoard = document.getElementById('grid-board');
     
 
-    const createGridBoard = () => {
+    const createGridBoard = (() => {
         for (let i = 0; i < 9; i++) {
             const gridCell = document.createElement('div');
             gridCell.dataset.cell = i;
             gameboard.push(gridCell);
             gridBoard.appendChild(gridCell);
         }
-    }
+    })();
 
     return {
         createGridBoard,
@@ -19,7 +19,6 @@ const gameBoard = (() => {
     };
 
 })();
-gameBoard.createGridBoard();
 
 const playerFactory = (playerMark, botMark) => {
     return {
@@ -30,33 +29,23 @@ const playerFactory = (playerMark, botMark) => {
 
 
 const displayController = (() => {
-    // const playerX = playerFactory('X', 'O');
-    // const playerO = playerFactory('O', 'X');
-    // const playerClear = playerFactory('', '')
 
-    const [playerX, playerO, playerClear] = [playerFactory('X', 'O'), playerFactory('O', 'X'), 
+    const players = [playerFactory('X', 'O'), playerFactory('O', 'X'), 
     playerFactory('', '')];
-
-    const xButton = document.querySelector('.button.x');
-    const oButton = document.querySelector('.button.o');
-    const displayButton = document.querySelector('.button.display')
-    const resetButton = document.querySelector('.button.reset')
+    const [playerX, playerO, playerClear] = players;
+    const buttons = [document.querySelector('.button.x'), document.querySelector('.button.o'),
+    document.querySelector('.button.reset')];
+    const [xButton, oButton, resetButton] = buttons;
     
     const winConOne = [ [0, 4, 8], [0, 3, 6], [2, 5, 8], [1, 4, 7], [2, 4, 6], [0, 1, 2], [6, 7, 8], [3, 4, 5] ]
 
-    const playerChoice = function() {
-
-        xButton.addEventListener('click', function() {
-            user = playerX;
-
-        })
-        oButton.addEventListener('click', function() {
-            user = playerO;
-
-        })
-        resetButton.addEventListener('click', function() {
-        })
-    }
+    const playerChoice = (function() {
+        for (let i = 0; i < 3; i++) {
+            buttons[i].addEventListener('click', function() {
+                user = players[i]
+            })
+        }
+    })();
 
 const checker = (() => {
     let checkArr = [];
@@ -67,6 +56,7 @@ const checker = (() => {
         }
     }
     toNine();
+
 
     gameBoard.gridBoard.addEventListener('click', function(e) {
 
@@ -107,7 +97,7 @@ const checker = (() => {
                 clearBoard('GG PLAYER O Wins!');
             }
         }
-        console.log(checkArr);
+        user = playerClear;
     })
     return {
         toNine,
@@ -134,19 +124,15 @@ function clearBoard(winner) {
         gameBoard.gridBoard.style.visibility = 'visible'
         oButton.style.visibility = 'visible'
         xButton.style.visibility = 'visible'
-        // user = playerClear;
     })
 
 
     return {
         playerChoice,
-        checker,
-        clearBoard,
     }
 })();
 
 
-displayController.playerChoice();
 
 
 
